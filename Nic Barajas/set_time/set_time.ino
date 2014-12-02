@@ -2,10 +2,15 @@
  
 #include <Wire.h>
 #include "RTClib.h"
- 
+
+const int pin3 = A3;
+const int pin2 = A2;
+
 RTC_DS1307 RTC;
  
 void setup () {
+    pinMode(pin3, OUTPUT);
+    pinMode(pin2, OUTPUT);
     Serial.begin(57600);
     Wire.begin();
     RTC.begin();
@@ -19,6 +24,8 @@ void setup () {
 }
  
 void loop () {
+    digitalWrite(pin2, LOW);
+    digitalWrite(pin3, HIGH);
     DateTime now = RTC.now();
  
     Serial.print(now.year(), DEC);
